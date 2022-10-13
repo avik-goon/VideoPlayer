@@ -48,7 +48,7 @@ const PlayVideo = props => {
   const [fullScreen, setFullScreen] = useState(false);
   const IsFocused = useIsFocused();
   const navigation = useNavigation();
-
+  const noop = () => { };
   const [counter, setCounter] = useState(0);
   useEffect(() => {
     const timer =
@@ -60,7 +60,10 @@ const PlayVideo = props => {
 
   const [showController, setshowController] = useState(true);
 
-  const [paused, setpaused] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [paused, setPaused] = useState(false);
+  const [playerState, setPlayerState] = useState(PLAYER_STATES.PLAYING);
   const [muted, setmuted] = useState(false);
   const [volume, setvolume] = useState(1);
   const [CurrentTime, setCurrentTime] = useState(0);
@@ -230,6 +233,9 @@ const PlayVideo = props => {
     </View>
   );
 
+
+
+
   return (
     <>
       <TouchableOpacity
@@ -280,8 +286,8 @@ const PlayVideo = props => {
           onProgress={e => {
             console.log('pro', e);
             setCurrentTime(e.currentTime);
-          }}
-        />
+          }} />
+
         {showController ? Controller : null}
       </TouchableOpacity>
       {fullScreen ? null : (
