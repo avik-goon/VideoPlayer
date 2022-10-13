@@ -1,10 +1,12 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import Video from 'react-native-video';
 import VideoPlayer from 'react-native-video-controls';
 import Orientation from 'react-native-orientation-locker';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {Icon} from '@rneui/themed';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { Icon } from '@rneui/themed';
+import MediaControls, { PLAYER_STATES } from 'react-native-media-controls';
+
 var videos = [
   {
     url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4',
@@ -201,7 +203,7 @@ const PlayVideo = props => {
       </View>
 
       {/* Bottom View */}
-      <View style={{height: '20%', justifyContent: 'flex-end'}}>
+      <View style={{ height: '20%', justifyContent: 'flex-end' }}>
         <Text
           style={{
             color: '#fff',
@@ -237,13 +239,13 @@ const PlayVideo = props => {
           },
           fullScreen
             ? {
-                height: '100%',
-                width: '100%',
-              }
+              height: '100%',
+              width: '100%',
+            }
             : {
-                height: 250,
-                width: '100%',
-              },
+              height: 250,
+              width: '100%',
+            },
         ]}
         activeOpacity={1}
         onPress={toggleController}>
@@ -315,7 +317,7 @@ const PlayVideo = props => {
                   setpaused(false);
                 }}>
                 <Image
-                  source={{uri: item.poster}}
+                  source={{ uri: item.poster }}
                   style={{
                     height: 50,
                     width: 50,
